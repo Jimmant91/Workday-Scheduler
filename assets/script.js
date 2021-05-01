@@ -19,3 +19,21 @@ for (var i = 0; i < 9; i++) {
         
         </div>`))
 }
+
+for (var index = 8; index < 17; index++) {
+    if (index < 12) {
+        $('.row').children('.hour').eq(index - 8).text(`${index} AM`)
+    } else if (index === 12) {
+        $('.row').children('.hour').eq(index - 8).text(`${index} PM`)
+    } else {
+        $('.row').children('.hour').eq(index - 8).text(`${index - 12} PM`)
+    }
+    if (index == moment().format('H')) {
+        $('textarea').eq(index - 8).addClass('present')
+    } else if (index < moment().format('H')) {
+        $('textarea').eq(index - 8).addClass('past')
+    } else {
+        $('textarea').eq(index - 8).addClass('future')
+    }
+    $(`#text-0${index - 7}`).text(localStorage.getItem(`text-0${index - 7}`))
+}
