@@ -20,6 +20,10 @@ for (var i = 0; i < 9; i++) {
         </div>`))
 }
 
+var saveBtn = $('.row').children('.saveBtn')
+
+//adding hours to the time column
+
 for (var index = 8; index < 17; index++) {
     if (index < 12) {
         $('.row').children('.hour').eq(index - 8).text(`${index} AM`)
@@ -37,3 +41,8 @@ for (var index = 8; index < 17; index++) {
     }
     $(`#text-0${index - 7}`).text(localStorage.getItem(`text-0${index - 7}`))
 }
+saveBtn.on('click', function () {
+    var textEl = $(this.parentNode).children('.col-md-10').attr('id');
+    var textToStorage = $(this.parentNode).children('.col-md-10').val();
+    localStorage.setItem(textEl, textToStorage)
+})
